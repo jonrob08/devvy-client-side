@@ -1,6 +1,28 @@
-import React from 'react';
+import { React, useEffect, useState } from 'react';
+import axios from 'axios';
+import { render } from '@testing-library/react';
+
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 function DashboardBody() {
+    const [job, setJob] = useState([])
+
+        useEffect(() => {
+            axios.get(`${REACT_APP_SERVER_URL}/jobs`)
+            .then(response => {
+                setJob(response.data.jobs)
+                console.log("This is an array of jobs>>>>", job)
+            })
+        }, [])
+
+    const renderJobs = () => {
+        console.log("We made it!")
+        let jobsArr = job.map((j, idx) => <p>{j.title}</p>)
+        console.log("THIS IS IT>>>", jobsArr)
+        return jobsArr
+    }   
+    
+
     return (
         <div>
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -37,19 +59,15 @@ function DashboardBody() {
                                 </div>
                                 <div className="card-body">
                                     <h5 className="card-title">Special title treatment</h5>
-                                    <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    {renderJobs()}
+                                    <p className="card-text"></p>
                                     <a href="#" className="btn btn-primary">Go somewhere</a>
                                 </div>
                             </div>
                         </div>
                         {/* Second Container */}
-                        <div className="col-md-4 d-flex align-items-stretch">
-                            <div className="card">
-                                <div className="card-body">
-                                    <h5 className="card-title">Calendar Here</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                            </div>
+                        <div className="col-md-4">
+                          
                         </div>
                     </div>
 
