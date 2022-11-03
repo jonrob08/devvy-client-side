@@ -7,7 +7,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from "@fullcalendar/interaction"
 import listPlugin from '@fullcalendar/list'
 import { Box, List, ListItem, ListItemText, Typography, useTheme } from "@mui/material";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import { tokens } from "../../theme";
 
 const Calendar = () => {
