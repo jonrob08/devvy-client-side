@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, IconButton, Typography, useTheme, List , ListItem } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -21,7 +21,7 @@ import { AppContext } from "../../ContextApi/AppContext";
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const {UserGState} = useContext(AppContext);
+  const { UserGState } = useContext(AppContext);
 
   return (
     <MenuItem
@@ -43,6 +43,15 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+
+  // for user info
+  const { UserGState, dispatchUser } = useContext(AppContext)
+  const navigate = useNavigate();
+  //logout function
+  const Logout = () => {
+    dispatchUser({ type: "LOGOUT" })
+    navigate('/login');
+  }
 
   return (
     <Box
@@ -104,17 +113,12 @@ const Sidebar = () => {
                 />
               </Box>
               <Box textAlign="center">
-                <Typography
-                  variant="h2"
-                  color={colors.grey[100]}
-                  fontWeight="bold"
-                  sx={{ m: "10px 0 0 0" }}
-                >
-                 Put name here
-                </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
-                  Admin Dashboard
-                </Typography>
+                <Link to='/profile'>
+                  <ListItem button className="profilePic">
+                    <img src={UserGState.info.profile_pic} width="28px" height="28px" />
+                    <Typography variant="subtitle1">{UserGState.info.username}</Typography>
+                  </ListItem>
+                </Link>
               </Box>
             </Box>
           )}
