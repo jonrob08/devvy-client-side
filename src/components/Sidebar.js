@@ -1,81 +1,51 @@
 import React from 'react';
 
-function Sidebar() {
+// to be imported only on pages we want a sidebar nav
+
+
+function Sidebar({
+}) {
     return (
         <div>
-            <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" style={{ boxSizing: "border-box"}}>
             <div className="position-sticky pt-3 sidebar-sticky">
+              <div className="px-3">
+                <h5>Hello.</h5>
+                <hr />
+              </div>
               <ul className="nav flex-column">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="#">
-                    <span data-feather="home" className="align-text-bottom"></span>
+                  <a className="nav-link active text-right" aria-current="page" href="/#">
+                    Home
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/dashboard">
                     Dashboard
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file" className="align-text-bottom"></span>
-                    Tasks
+                  <a className="nav-link" href="/projects">
+                    Projects
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="shopping-cart" className="align-text-bottom"></span>
-                    Users
+                  <a className="nav-link" href="/profile">
+                    Profile
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="users" className="align-text-bottom"></span>
-                    Calendar
+                  <a className="nav-link" href="/about">
+                    About
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="bar-chart-2" className="align-text-bottom"></span>
-                    Reports
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="layers" className="align-text-bottom"></span>
-                    Integrations
+                  <a className="nav-link" href="/contact">
+                    Contact
                   </a>
                 </li>
               </ul>
 
-              <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
-                <span>New Section</span>
-                <a className="link-secondary" href="#" aria-label="Add a new report">
-                  <span data-feather="plus-circle" className="align-text-bottom"></span>
-                </a>
-              </h6>
-              <ul className="nav flex-column mb-2">
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text" className="align-text-bottom"></span>
-                    Current month
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text" className="align-text-bottom"></span>
-                    Last quarter
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text" className="align-text-bottom"></span>
-                    Social engagement
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text" className="align-text-bottom"></span>
-                    Year-end sale
-                  </a>
-                </li>
-              </ul>
             </div>
           </nav>
 

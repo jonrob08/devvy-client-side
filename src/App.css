@@ -36,3 +36,104 @@
     transform: rotate(360deg);
   }
 }
+
+/* Main page */
+
+nav {
+  font-family: "Outfit", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: x-large;
+}
+.navbar-brand {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  
+}
+
+.navbar-dark {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 1.5em;
+  font-weight: 400;
+  text-shadow: rgba(211, 211, 211, 0.5);
+  text-transform: uppercase;
+}
+.brand__font {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 1.5em;
+  font-weight: 300;
+  text-shadow: 0.2rem 0.2rem 5rem rgba(195, 65, 65, 0.64) !important;
+}
+
+/* profile page */
+.profile-page-container {
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+}
+.cover-image {
+  position: absolute;
+  top: 0;
+  background-color: aliceblue;
+  border-radius: 8px;
+  height: 300px;
+  width: 100%;
+  z-index: 0;
+}
+.profile-container {
+  position: relative;
+  margin: 200px 24px 0 24px;
+  background-color: white;
+  border: 0.5px solid rgb(225, 225, 225);
+  border-radius: 8px;
+  padding: 48px;
+  height: 100vh;
+  z-index: 1000;
+}
+.profile-info-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.profile-data-container {
+  margin: 0;
+  padding: 0;
+}
+.profile-picture {
+  background-color: black;
+  width: 75px;
+  height: 75px;
+  border-radius: 100%;
+}
+.user-name {
+  font-weight: bold;
+  color: rgb(27, 87, 147);
+  font-size: 20px;
+}
+
+.information-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 48px;
+  margin-top: 32px;
+  background-color: white;
+}
+.user-description {
+  border-radius: 8px;
+  padding: 12px;
+  border: 0.5px solid rgb(225, 225, 225);
+}
+
+.todo-card:hover {
+  background-color: #f0f0f0;
+  transition: all ease-in-out 0.25s;
+  cursor: pointer;
+}
+.todo-card-description {
+  margin: 0;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}

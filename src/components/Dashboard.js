@@ -1,6 +1,8 @@
 import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 import { render } from '@testing-library/react';
+import Sidebar from './Sidebar';
+
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
@@ -25,6 +27,7 @@ function DashboardBody() {
 
     return (
         <div>
+            <Sidebar showDirectories />
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 className="h2">Dashboard</h1>
