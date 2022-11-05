@@ -13,7 +13,7 @@ import Loading from '../../Assets/images/loading.gif';
 import { Link } from 'react-router-dom';
 import { FollowingPosts } from '../../API/Post';
 
-const Home = () => {
+const Social = () => {
     const [createPost , setCreatePost] = useState(false);
     const {UserGState , dispatchUser , PostGState , dispatchPost} = useContext(AppContext);
     const [Waiting , setWaiting ] = useState(false)
@@ -68,4 +68,4 @@ const Home = () => {
     }
 }
 
-export default Home;
+export default Social;
