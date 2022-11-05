@@ -10,7 +10,7 @@ const Sidebar = () => {
     //logout function
     const Logout = () => {
         dispatchUser({type:"LOGOUT"})
-        navigate('/login');
+        navigate('/main');
     }
     return(
         <Box className="Sidebar">
