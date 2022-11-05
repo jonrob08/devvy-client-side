@@ -5,7 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import DownloadDoneIcon from '@mui/icons-material/DownloadDone';
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
@@ -105,9 +106,10 @@ const Sidebar = () => {
           {!isCollapsed && (
             <Box
               sx={{
-                marginBottom: "25px",
+                margin: "25px",
                 padding: "20px",
                 backgroundColor: "rgba(0,0,0,.1)",
+                borderRadius: "4px",
               }}>
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
@@ -140,24 +142,31 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Data
+              Jobs
             </Typography>
             <Item
-              title="Manage Team"
-              to="/team"
-              icon={<PeopleOutlinedIcon />}
+              title="Current Jobs"
+              to="/current-jobs"
+              icon={<WorkOutlineIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Contacts Information"
+              title="Team"
+              to="/team"
+              icon={<DownloadDoneIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Completed Jobs"
               to="/contacts"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Invoices Balances"
+              title="Pending Jobs"
               to="/invoices"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
