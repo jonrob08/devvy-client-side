@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Box, IconButton, Typography, useTheme, List , ListItem } from "@mui/material";
+import { Box, IconButton, Typography, useTheme, List, ListItem } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
@@ -48,6 +48,7 @@ const Sidebar = () => {
   const { UserGState, dispatchUser } = useContext(AppContext)
   const navigate = useNavigate();
   //logout function
+  console.log('USERINFO:', UserGState.info);
   const Logout = () => {
     dispatchUser({ type: "LOGOUT" })
     navigate('/login');
@@ -92,7 +93,7 @@ const Sidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINISTRATOR
+                  Devvy
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -102,22 +103,24 @@ const Sidebar = () => {
           </MenuItem>
 
           {!isCollapsed && (
-            <Box mb="25px">
+            <Box
+              sx={{
+                marginBottom: "25px",
+                padding: "20px",
+                backgroundColor: "rgba(0,0,0,.1)",
+              }}>
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`../../assets/user.png`}
+                  src={UserGState.info.profile_pic}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
               <Box textAlign="center">
                 <Link to='/profile'>
-                  <ListItem button className="profilePic">
-                    <img src={UserGState.info.profile_pic} width="28px" height="28px" />
-                    <Typography variant="subtitle1">{UserGState.info.username}</Typography>
-                  </ListItem>
+                  <Typography variant="h4">{UserGState.info.full_name}</Typography>
                 </Link>
               </Box>
             </Box>
