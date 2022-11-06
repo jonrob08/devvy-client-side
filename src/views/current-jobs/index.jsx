@@ -9,6 +9,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { AppContext } from "../../ContextApi/AppContext";
+import Job from "../../components/Job";
 
 // MUI Icons
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
@@ -23,8 +24,6 @@ const CurrentJobs = () => {
         dispatchUser({ type: "LOGOUT" })
         navigate('/login');
     }
-
-console.log('TOKEN', UserGState.info.AccessToken);
 
     const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
     const [job, setJob] = useState([])
@@ -61,10 +60,16 @@ console.log('TOKEN', UserGState.info.AccessToken);
                 </Typography>
             </AccordionSummary>
             <AccordionDetails>
-                <Typography>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, porro officia, adipisci, laborum incidunt sit quas iure quis ab accusamus quos. Cumque ratione totam ipsum exercitationem excepturi libero iste aliquam.
-                    {renderJobs()}
+                <Typography variant='h3'>
+                    Description
                 </Typography>
+                <Typography>
+                    Description goes here, lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, porro officia, adipisci, laborum incidunt sit quas iure quis ab accusamus quos. Cumque ratione totam ipsum exercitationem excepturi libero iste aliquam.
+                </Typography>
+                <Typography variant='h3'>
+                    Tasks
+                </Typography>
+                <Job />
             </AccordionDetails>
         </Accordion>
 
