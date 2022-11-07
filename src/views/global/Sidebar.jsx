@@ -5,13 +5,14 @@
 
 import { useState, useContext } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, IconButton, Typography, useTheme, List, ListItem } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import Header from "../../components/Header/Header";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import DownloadDoneIcon from '@mui/icons-material/DownloadDone';
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
@@ -29,7 +30,7 @@ import { fontWeight } from "@mui/system";
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const {UserGState} = useContext(AppContext);
+  const { UserGState } = useContext(AppContext);
 
   return (
     <MenuItem
@@ -51,6 +52,16 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+
+  // for user info
+  const { UserGState, dispatchUser } = useContext(AppContext)
+  const navigate = useNavigate();
+  //logout function
+  console.log('USERINFO:', UserGState.info);
+  const Logout = () => {
+    dispatchUser({ type: "LOGOUT" })
+    navigate('/login');
+  }
 
   return (
     <Box
@@ -95,31 +106,46 @@ const Sidebar = () => {
             style={{textAlign:"right"}}
           >
             {!isCollapsed && (
-              <>
-                {/* <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINISTRATOR
-                </Typography> */}
-                <IconButton className="buttonOverride" onClick={() => setIsCollapsed(!isCollapsed)}
->
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                ml="15px"
+              >
+                <Typography variant="h3" color={colors.grey[100]}>
+                  Devvy
+                </Typography>
+                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+
                   <MenuOutlinedIcon />
                 </IconButton>
-              </>
+              </Box>
             )}
           </MenuItem>
 
-          {/* contains profilepic username and descriptive text */}
+
           {!isCollapsed && (
-            <Box mb="2rem">  
+
+
+            <Box
+              sx={{
+                margin: "25px",
+                padding: "20px",
+                backgroundColor: "rgba(0,0,0,.1)",
+                borderRadius: "4px",
+              }}>
+
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`../../assets/user.png`}
+                  src={UserGState.info.profile_pic}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
               <Box textAlign="center">
+
                 <Typography
                   variant="h2"
                   color={colors.grey[100]}
@@ -129,6 +155,11 @@ const Sidebar = () => {
                  Username
                 </Typography>
                 <Header subtitle="Admin Dashboard" />
+
+                <Link to='/profile'>
+                  <Typography variant="h4">{UserGState.info.full_name}</Typography>
+                </Link>
+
               </Box>
             </Box>
           )}
@@ -159,25 +190,34 @@ const Sidebar = () => {
               color={colors.grey[300]} 
               sx={{ m: "2rem 0 0 0", fontWeight:"800"}}
             >
-              DATA
+
+              Jobs
+
             </Typography>
 
             <Item
-              title="Manage Team"
-              to="/team"
-              icon={<PeopleOutlinedIcon />}
+              title="Current Jobs"
+              to="/current-jobs"
+              icon={<WorkOutlineIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Contacts Information"
+              title="Team"
+              to="/team"
+              icon={<DownloadDoneIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Completed Jobs"
               to="/contacts"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Invoices Balances"
+              title="Pending Jobs"
               to="/invoices"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}

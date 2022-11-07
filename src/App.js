@@ -9,6 +9,7 @@ import Topbar from "./views/global/Topbar";
 import Sidebar from "./views/global/Sidebar";
 import Dashboard from "./views/dashboard";
 import Team from "./views/team";
+import CurrentJobs from "./views/current-jobs";
 import Contacts from "./views/contacts";
 import Invoices from "./views/invoices";
 import Form from "./views/form";
@@ -34,6 +35,7 @@ function App() {
   return (
     <AppProvider>
       <BrowserRouter>
+
         <ColorModeContext.Provider value={colorMode}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -168,6 +170,7 @@ function App() {
           </ThemeProvider>
         </ColorModeContext.Provider>
       </BrowserRouter>
+
     </AppProvider>
   );
 }
