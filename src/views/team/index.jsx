@@ -11,30 +11,33 @@ const Team = () => {
     const theme = useTheme()
     const colors = tokens(theme.palette.mode)
     const columns = [
-        {field: "id", headerName: "ID"},
-        { field: "name", headerName: "Name", flex: 1, cellClassName: "name-column--cell" },
-        { field: "age", headerName: "Age", type: "number", headerAlign: "left", align: "left"},
-        { field: "phone", headerName: "Phone Number", flex: 1},
-        { field: "email", headerName: "Email", flex: 1},
-        { field: "access", headerName: "Access Level", flex: 1, renderCell: ({ row: { access } }) => {
+        { field: "id", headerName: "ID", flex: 1, headerAlign: "right", align:"right"},
+        { field: "name", headerName: "Name", flex: 2, cellClassName: "name-column--cell", headerAlign: "center", align:"left" },
+        { field: "age", headerName: "Age", flex: 1, type: "number", headerAlign: "center", align: "center"},
+        { field: "phone", headerName: "Phone Number", flex: 2, headerAlign: "center", align: "center"},
+        { field: "email", headerName: "Email", flex: 2, headerAlign: "center", align: "right"},
+        { field: "access", headerName: "Access Level", flex: 2, headerAlign: "center", align: "center", renderCell: ({ row: { access } }) => {
             return (
                 <Box
-                    width="60%"
-                    m="0 auto"
-                    p="5px"
+                    width="80%"
+                    m="0.3rem"
+                    p="0.3rem"
                     display="flex"
                     justifyContent="center"
+
+                    borderRadius="7px"
                     backgroundColor={
                         access === "admin"
-                        ? colors.greenAccent[600]
-                        : colors.greenAccent[700]
+                        ? colors.blueAccent[900]
+                        : colors.blueAccent[700]
                     }
-                    borderRadius="4px"
+                    sx={{ boxShadow: 3 }}
+                    
                 >
-                    {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
+                    {access === "admin" && <AdminPanelSettingsOutlinedIcon textShadow="2px 2px #000000;" />}
                     {access === "manager" && <SecurityOutlinedIcon />}
                     {access === "user" && <LockOpenOutlinedIcon />}
-                    <Typography color={colors.grey[100]} sx={{ ml: '5px' }}>
+                    <Typography color={colors.primary[100]} pl="5px">
                         {access}
                     </Typography>
                 </Box>
@@ -43,40 +46,61 @@ const Team = () => {
     ]
 
     return (
-        <Box m="20px">
+        <Box>
             <Header title="TEAM" subtitle="Managing Team Members" />
             <Box
-                m="40px 0 0 0"
-                height="75vh"
+                m="1rem"
+                pr="1rem"
+                height="70vh"
+                width="100%"
                 sx={{ 
                     "& .MuiDataGrid-root": {
+                        marginRight: "1rem",
                         border: "none"
                     },
                     "& .MuiDataGrid-cell": {
                       borderBottom: "none",
                     },
                     "& .name-column--cell": {
-                      color: colors.greenAccent[300],
+                      color: colors.primary[100],
                     },
                     "& .MuiDataGrid-columnHeaders": {
-                      backgroundColor: colors.blueAccent[700],
+                      backgroundColor: colors.grey[800],
                       borderBottom: "none",
+                      borderRadius:"10px 10px 0 0"
                     },
                     "& .MuiDataGrid-virtualScroller": {
-                      backgroundColor: colors.primary[400],
+                      backgroundColor: colors.primary[800],         //inner
                     },
                     "& .MuiDataGrid-footerContainer": {
                       borderTop: "none",
-                      backgroundColor: colors.blueAccent[700],
+                      backgroundColor: colors.grey[800],
+                      borderRadius: "0 0 10px 10px",
+                    },
+                    "& .MuiTablePagination-selectLabel": {
+                        paddingTop: "1rem",
+                        justifyContent:"center !important",
+                        alignContent: "center !important",
+                    },
+                    "& .MuiTablePagination-displayedRows": {
+                        paddingTop: "1rem",
+                        justifyContent:"center !important",
+                        alignContent: "center !important",
                     },
                     "& .MuiCheckbox-root": {
-                      color: `${colors.greenAccent[200]} !important`,
+                      color: `${colors.blueAccent[200]} !important`,
+
                     },
                  }}
             >
                 <DataGrid 
                     rows={mockDataTeam}
                     columns={columns}
+                    initialState={{
+                        sorting: {
+                            sortModel: [{ field: 'access', sort: 'asc' }]
+                        }
+                    }}
                 />
             </Box>
         </Box>

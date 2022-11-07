@@ -1,9 +1,15 @@
+/*
+* this is the navigational sidebar located on the left of dashboard views 
+* 
+========================================================================= */ 
+
 import { useState, useContext } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
+import Header from "../../components/Header/Header";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
@@ -17,6 +23,8 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import { AppContext } from "../../ContextApi/AppContext";
+import { CenterFocusStrong } from "@material-ui/icons";
+import { fontWeight } from "@mui/system";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -47,53 +55,61 @@ const Sidebar = () => {
   return (
     <Box
       sx={{
+        margin: "2em 2rem",
+        padding:0,
+        textAlign: "center",
+        justifyContent: "center",
+
+
         "& .pro-sidebar-inner": {
-          background: `${colors.primary[400]} !important`,
+          background: `${colors.primary[800]} !important`,
+          boxShadow: "0 3px 25px rgb(0, 0, 0, 0.5)",
+          borderRadius: "20px"
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
         },
-        "& .pro-inner-item": {
-          padding: "5px 35px 5px 20px !important",
-        },
-        "& .pro-inner-item:hover": {
-          color: "#868dfb !important",
-        },
+        // "& .pro-inner-item": {
+        //   // padding: "5px 35px 5px 20px !important",
+        //   // width: "15em",
+        //   border: "1px solid red"
+        // },
+
         "& .pro-menu-item.active": {
-          color: "#6870fa !important",
+          color: `${colors.grey[100]} !important`,
+          fontWeight: "900",
+          fontFamily: `"Helvetica Neue", sans-serif`,
         },
       }}
     >
-      <ProSidebar collapsed={isCollapsed}>
-        <Menu iconShape="square">
+      <ProSidebar collapsed={isCollapsed}
+      sx={{
+        paddingLeft: "1rem",
+      }}>
+        <Menu iconShape="square"
+          style={{backgroundColor: `${colors.grey[900]} !important`}}>
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
-            style={{
-              margin: "10px 0 20px 0",
-              color: colors.grey[100],
-            }}
+            style={{textAlign:"right"}}
           >
             {!isCollapsed && (
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                ml="15px"
-              >
-                <Typography variant="h3" color={colors.grey[100]}>
+              <>
+                {/* <Typography variant="h3" color={colors.grey[100]}>
                   ADMINISTRATOR
-                </Typography>
-                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                </Typography> */}
+                <IconButton className="buttonOverride" onClick={() => setIsCollapsed(!isCollapsed)}
+>
                   <MenuOutlinedIcon />
                 </IconButton>
-              </Box>
+              </>
             )}
           </MenuItem>
 
+          {/* contains profilepic username and descriptive text */}
           {!isCollapsed && (
-            <Box mb="25px">
+            <Box mb="2rem">  
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt="profile-user"
@@ -110,19 +126,29 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                 Put name here
+                 Username
                 </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
-                  Admin Dashboard
-                </Typography>
+                <Header subtitle="Admin Dashboard" />
               </Box>
             </Box>
           )}
 
-          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+          <Box textAlign={isCollapsed ? "center" : "left"} marginLeft={isCollapsed ? undefined : "10%"} marginBottom="2rem"
+            
+            // sx={{
+            //   "& .pro-inner-item:hover": {
+            //     color: `${colors.grey[100]} !important`,
+            //     backgroundColor: `${colors.grey[900]} !important`,
+            //     width: "80%",
+
+            //     paddingLeft: 0,
+            //     borderRadius: "10px"
+            //   },
+            // }}
+            >
             <Item
               title="Dashboard"
-              to="/"
+              to="/dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -130,11 +156,12 @@ const Sidebar = () => {
 
             <Typography
               variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+              color={colors.grey[300]} 
+              sx={{ m: "2rem 0 0 0", fontWeight:"800"}}
             >
-              Data
+              DATA
             </Typography>
+
             <Item
               title="Manage Team"
               to="/team"
@@ -160,9 +187,9 @@ const Sidebar = () => {
             <Typography
               variant="h6"
               color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+              sx={{ m: "2rem 0 0 0" }}
             >
-              Pages
+              PAGES
             </Typography>
             <Item
               title="Profile Form"
@@ -189,9 +216,10 @@ const Sidebar = () => {
             <Typography
               variant="h6"
               color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+              // sx={{ m: "15px 0 5px 20px" }}
+              sx={{ m: "2rem 0 0 0" }}
             >
-              Charts
+              CHARTS
             </Typography>
             <Item
               title="Bar Chart"

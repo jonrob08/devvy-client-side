@@ -3,15 +3,23 @@
 html,
 body,
 #root,
-.app,
-.content{
-  height: 1005;
-  width:100%;
+.app {
+  align-items: center;
+  justify-content: center;
+
+}
+
+.content {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .app{
   display:flex;
   font-family: 'Manrope', sans-serif;
+  width: 100%;
 }
 
 body {
