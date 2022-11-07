@@ -1,11 +1,18 @@
+/*
+* this is the navigational sidebar located on the left of dashboard views 
+* 
+========================================================================= */ 
+
 import { useState, useContext } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, IconButton, Typography, useTheme, List, ListItem } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
+import Header from "../../components/Header/Header";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import DownloadDoneIcon from '@mui/icons-material/DownloadDone';
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
@@ -17,11 +24,13 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import { AppContext } from "../../ContextApi/AppContext";
+import { CenterFocusStrong } from "@material-ui/icons";
+import { fontWeight } from "@mui/system";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const {UserGState} = useContext(AppContext);
+  const { UserGState } = useContext(AppContext);
 
   return (
     <MenuItem
@@ -44,36 +53,57 @@ const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
 
+  // for user info
+  const { UserGState, dispatchUser } = useContext(AppContext)
+  const navigate = useNavigate();
+  //logout function
+  console.log('USERINFO:', UserGState.info);
+  const Logout = () => {
+    dispatchUser({ type: "LOGOUT" })
+    navigate('/login');
+  }
+
   return (
     <Box
       sx={{
+        margin: "2em 2rem",
+        padding:0,
+        textAlign: "center",
+        justifyContent: "center",
+
+
         "& .pro-sidebar-inner": {
-          background: `${colors.primary[400]} !important`,
+          background: `${colors.primary[800]} !important`,
+          boxShadow: "0 3px 25px rgb(0, 0, 0, 0.5)",
+          borderRadius: "20px"
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
         },
-        "& .pro-inner-item": {
-          padding: "5px 35px 5px 20px !important",
-        },
-        "& .pro-inner-item:hover": {
-          color: "#868dfb !important",
-        },
+        // "& .pro-inner-item": {
+        //   // padding: "5px 35px 5px 20px !important",
+        //   // width: "15em",
+        //   border: "1px solid red"
+        // },
+
         "& .pro-menu-item.active": {
-          color: "#6870fa !important",
+          color: `${colors.grey[100]} !important`,
+          fontWeight: "900",
+          fontFamily: `"Helvetica Neue", sans-serif`,
         },
       }}
     >
-      <ProSidebar collapsed={isCollapsed}>
-        <Menu iconShape="square">
+      <ProSidebar collapsed={isCollapsed}
+      sx={{
+        paddingLeft: "1rem",
+      }}>
+        <Menu iconShape="square"
+          style={{backgroundColor: `${colors.grey[900]} !important`}}>
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
-            style={{
-              margin: "10px 0 20px 0",
-              color: colors.grey[100],
-            }}
+            style={{textAlign:"right"}}
           >
             {!isCollapsed && (
               <Box
@@ -83,46 +113,73 @@ const Sidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINISTRATOR
+                  Devvy
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+
                   <MenuOutlinedIcon />
                 </IconButton>
               </Box>
             )}
           </MenuItem>
 
+
           {!isCollapsed && (
-            <Box mb="25px">
+
+
+            <Box
+              sx={{
+                margin: "25px",
+                padding: "20px",
+                backgroundColor: "rgba(0,0,0,.1)",
+                borderRadius: "4px",
+              }}>
+
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`../../assets/user.png`}
+                  src={UserGState.info.profile_pic}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
               <Box textAlign="center">
+
                 <Typography
                   variant="h2"
                   color={colors.grey[100]}
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                 Put name here
+                 Username
                 </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
-                  Admin Dashboard
-                </Typography>
+                <Header subtitle="Admin Dashboard" />
+
+                <Link to='/profile'>
+                  <Typography variant="h4">{UserGState.info.full_name}</Typography>
+                </Link>
+
               </Box>
             </Box>
           )}
 
-          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+          <Box textAlign={isCollapsed ? "center" : "left"} marginLeft={isCollapsed ? undefined : "10%"} marginBottom="2rem"
+            
+            // sx={{
+            //   "& .pro-inner-item:hover": {
+            //     color: `${colors.grey[100]} !important`,
+            //     backgroundColor: `${colors.grey[900]} !important`,
+            //     width: "80%",
+
+            //     paddingLeft: 0,
+            //     borderRadius: "10px"
+            //   },
+            // }}
+            >
             <Item
               title="Dashboard"
-              to="/"
+              to="/dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -130,27 +187,37 @@ const Sidebar = () => {
 
             <Typography
               variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+              color={colors.grey[300]} 
+              sx={{ m: "2rem 0 0 0", fontWeight:"800"}}
             >
-              Data
+
+              Jobs
+
             </Typography>
+
             <Item
-              title="Manage Team"
-              to="/team"
-              icon={<PeopleOutlinedIcon />}
+              title="Current Jobs"
+              to="/current-jobs"
+              icon={<WorkOutlineIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Contacts Information"
+              title="Team"
+              to="/team"
+              icon={<DownloadDoneIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Completed Jobs"
               to="/contacts"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Invoices Balances"
+              title="Pending Jobs"
               to="/invoices"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
@@ -160,9 +227,9 @@ const Sidebar = () => {
             <Typography
               variant="h6"
               color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+              sx={{ m: "2rem 0 0 0" }}
             >
-              Pages
+              PAGES
             </Typography>
             <Item
               title="Profile Form"
@@ -189,9 +256,10 @@ const Sidebar = () => {
             <Typography
               variant="h6"
               color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+              // sx={{ m: "15px 0 5px 20px" }}
+              sx={{ m: "2rem 0 0 0" }}
             >
-              Charts
+              CHARTS
             </Typography>
             <Item
               title="Bar Chart"
