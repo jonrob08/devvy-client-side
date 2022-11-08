@@ -78,9 +78,7 @@ const Sidebar = () => {
         verticalAlign: "middle",
 
         "& .pro-sidebar-inner": {
-          background: `${colors.primary[800]} !important`,
-          boxShadow: "0 3px 25px rgb(0, 0, 0, 0.5)",
-          borderRadius: "20px"
+          background: `${colors.primary[700]} !important`,
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
