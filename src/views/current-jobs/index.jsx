@@ -18,12 +18,39 @@ import { tokens } from "../../theme";
 import { getAllJobs, getOneJob } from "../../API/Job";
 import { AppContext } from "../../ContextApi/AppContext";
 import { Handshake } from "@mui/icons-material";
+import Job from "../../components/Job";
+import React from 'react';
+
+// MUI Icons
+import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Checkbox from '@mui/material/Checkbox';
+import IconButton from '@mui/material/IconButton';
+import CommentIcon from '@mui/icons-material/Comment';
 
 const CurrentJobs = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const { JobGState, dispatchJob } = useContext(AppContext);
   const [openDialog, setOpenDialog] = useState(false);
+  const [checked, setChecked] = React.useState([0]);
+
+  const handleToggle = (value) => () => {
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+
+    setChecked(newChecked);
+  };
 
   useEffect(() => {
     (async () => {
@@ -45,36 +72,53 @@ const CurrentJobs = () => {
         JobGState.jobs.map((job) => {
           return (
             <>
-              <Accordion defaultExpanded onClick={() => handleJobData(job._id)}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography color={colors.greenAccent[500]} variant="h5">
+              <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon />}>
+                  <Typography variant='h5'>
                     {job.title}
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>{job.description}</Typography>
+                  <Typography variant='h6'>
+                    Description
+                  </Typography>
+                  <Typography mb="20px">
+                    {job.description}
+                  </Typography>
+                  <Typography variant='h6' mb="10px">
+                    Tasks
+                  </Typography>
+                  <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                    {JobGState.jobDetail?.tasks.map((task) => {
+                      const labelId = `checkbox-list-label-${task.title}`;
+
+                      return (
+                        <ListItem
+                          key={task.title}
+                          secondaryAction={
+                            <IconButton edge="end" aria-label="comments">
+                              <CommentIcon />
+                            </IconButton>
+                          }
+                          disablePadding
+                        >
+                          <ListItemButton role={undefined} onClick={handleToggle(task.title)} dense>
+                            <ListItemIcon>
+                              <Checkbox
+                                edge="start"
+                                checked={checked.indexOf(task.title) !== -1}
+                                tabIndex={-1}
+                                disableRipple
+                                inputProps={{ 'aria-labelledby': labelId }}
+                              />
+                            </ListItemIcon>
+                          </ListItemButton>
+                        </ListItem>
+                      );
+                    })}
+                  </List>
                 </AccordionDetails>
               </Accordion>
-              <Dialog
-                sx={{ "& .MuiDialog-paper": { width: "80%", maxHeight: 435 } }}
-                maxWidth="xs"
-                open={openDialog}
-              >
-                <DialogTitle>{job.title}</DialogTitle>
-                <DialogContent dividers>
-                  {JobGState.jobDetail?.tasks.map((task) => (
-                    <>
-                      <Typography>{task.title}</Typography>
-                      {task.items.map((task) => (
-                        <Typography>{task.title}</Typography>
-                      ))}
-                    </>
-                  ))}
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={() => setOpenDialog(false)}>Ok</Button>
-                </DialogActions>
-              </Dialog>
             </>
           );
         })}
