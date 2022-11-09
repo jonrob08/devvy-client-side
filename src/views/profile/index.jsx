@@ -12,26 +12,27 @@ import {
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 // import some icons from material ui
-import CameraAltIcon from "@material-ui/icons/CameraAlt";
-import ProfilePic from "../../Assets/images/profile.jpeg";
-import AddIcon from "@material-ui/icons/Add";
-import EditIcon from "@material-ui/icons/Edit";
-// import some components
-import Navbar from "../../components/Navbar/Navbar";
-import AddPost from "../../components/AddPost/AddPost";
-import CreatePost from "../../components/CreatePost/CreatePost";
-import UserInfo from "../../components/UserInfo/UserInfo";
-import Photos from "../../components/Photos/Photos";
-import Friends from "../../components/Friends/Friends";
-import Post from "../../components/Post/Post";
-import { editUser, ProfileInfo, UserProfile } from "../../API/User";
-import { HandleErr } from "../../Utils/Utils";
-import { userPosts } from "../../API/Post";
-import { AppContext } from "../../ContextApi/AppContext";
-import Loading from "../../Assets/images/loading.gif";
-import "./profile.scss";
-import { tokens } from "../../theme";
-import { ColorModeContext } from "../../theme";
+import CameraAltIcon from '@material-ui/icons/CameraAlt';
+import ProfilePic from '../../Assets/images/profile.jpeg'
+import AddIcon from '@material-ui/icons/Add';   
+import EditIcon from '@material-ui/icons/Edit';
+// import some components 
+import Navbar from '../../components/Navbar/Navbar';
+import AddPost from '../../components/AddPost/AddPost'
+import CreatePost from '../../components/CreatePost/CreatePost'
+import UserInfo from '../../components/UserInfo/UserInfo';
+import Photos from '../../components/Photos/Photos';
+import Friends from '../../components/Friends/Friends';
+import Post from '../../components/Post/Post'
+import { editUser, ProfileInfo, getJobs } from '../../API/User';
+import { HandleErr } from '../../Utils/Utils';
+import { userPosts } from '../../API/Post';
+import { AppContext } from '../../ContextApi/AppContext';
+import Loading from '../../Assets/images/loading.gif'
+import './profile.scss'
+import { tokens } from '../../theme';
+import { ColorModeContext } from '../../theme';
+import { UserProfile } from '../../API/User';
 
 const Profile = () => {
   const theme = useTheme();

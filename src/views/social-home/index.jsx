@@ -2,12 +2,8 @@ import { useState , useContext, useEffect  } from 'react';
 import {Box , Button, Grid, Typography } from '@material-ui/core'
 import AddPost from '../../components/AddPost/AddPost';
 import CreatePost from '../../components/CreatePost/CreatePost';
-import Navbar from '../../components/Navbar/Navbar';
 import Post from '../../components/Post/Post';
-import Sidebar from '../../components/Sidebar/Sidebar';
-import Story from '../../components/Story/Story';
 import { AppContext } from '../../ContextApi/AppContext';
-import { ProfileInfo } from '../../API/User';
 import { HandleErr } from '../../Utils/Utils';
 import Loading from '../../Assets/images/loading.gif';
 import { Link } from 'react-router-dom';
@@ -15,7 +11,7 @@ import { FollowingPosts } from '../../API/Post';
 
 const Social = () => {
     const [createPost , setCreatePost] = useState(false);
-    const {UserGState , dispatchUser , PostGState , dispatchPost} = useContext(AppContext);
+    const {PostGState , dispatchPost} = useContext(AppContext);
     const [Waiting , setWaiting ] = useState(false)
     window.onclick = () => {setCreatePost(false)}
     useEffect(() => {
