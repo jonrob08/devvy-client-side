@@ -9,7 +9,7 @@
             border-radius: 8px;
             overflow: hidden;
             @media all and (min-width:946px) {
-                width: 100%;
+                width: 940px;
             }
             img{
                 object-fit: cover;
@@ -48,12 +48,8 @@
         align-self: center;
         width: 90%;
         z-index: 9;
-        margin: 0;
-        padding: 1rem 1.5rem;
-        transform: translateY(-48%);
-        border-radius: 10px 10px 0 0;
         @media all and (min-width:946px) {
-            width: 95%;
+            width: 940px;
         }
 
         .leftSide{
@@ -95,30 +91,28 @@
                     object-fit: cover;
                     margin-right: -5px;
                     border: 2px solid #fff;
-                    
                 }
             }
         }
         .BTNs{
             align-items: flex-end;
             height: 100%;
-            transform: translateX(-23%);
+            
         }
     }
     .Navigation{
         align-self: center;
-        width: 100%;
-        // margin-top: 20px;
-        
-        transform: translateY(-98%);
-        
+        width: 90%;
+        margin-top: 20px;
+        border-top: 1px solid #959699;
         @media all and (min-width:946px) {
-            width: 95%;
+            width: 940px;
         }
-
+        .post-link{
+            color: red;
+        }
         .post-link:hover{
             text-decoration: none;
-            border-radius:5px;
         }
         ul{
             display: flex;

@@ -22,47 +22,31 @@ const Contacts = () => {
     ]
 
     return (
-        <Box 
-        sx={{
-          background: `${colors.primary[700]} !important`,
-          boxShadow: "0 3px 25px rgb(0, 0, 0, 0.5)",
-          borderRadius: "20px",
-          padding: "1.5rem",
-          // width: "50vw"
-        }}>
+        <Box m="20px">
             <Header title="CONTACTS" subtitle="List of Contacts for Future Reference" />
             <Box
-                    
-                    m="0.3rem"
-                    p="0.3rem"
-                    display="flex"
-                    justifyContent="center"
-
-                    borderRadius="7px"
+                m="40px 0 0 0"
                 height="75vh"
                 sx={{ 
                     "& .MuiDataGrid-root": {
-                        marginRight: "1rem",
                         border: "none"
                     },
                     "& .MuiDataGrid-cell": {
                       borderBottom: "none",
                     },
                     "& .name-column--cell": {
-                      color: colors.primary[100],
+                      color: colors.greenAccent[300],
                     },
                     "& .MuiDataGrid-columnHeaders": {
-                      backgroundColor: colors.grey[800],
+                      backgroundColor: colors.blueAccent[700],
                       borderBottom: "none",
-                      borderRadius:"10px 10px 0 0"
                     },
                     "& .MuiDataGrid-virtualScroller": {
-                      backgroundColor: colors.primary[800],
+                      backgroundColor: colors.primary[400],
                     },
                     "& .MuiDataGrid-footerContainer": {
                       borderTop: "none",
-                      backgroundColor: colors.grey[800],
-                      borderRadius: "0 0 10px 10px",
+                      backgroundColor: colors.blueAccent[700],
                     },
                     "& .MuiCheckbox-root": {
                       color: `${colors.greenAccent[200]} !important`,

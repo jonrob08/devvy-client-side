@@ -16,7 +16,6 @@ import ProgressCircle from "../../components/ProgressCircle/ProgressCircle";
 import Sidebar from "../global/Sidebar";
 import Topbar from "../global/Topbar";
 
-
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -24,10 +23,11 @@ const Dashboard = () => {
 
   return (
     <>
+    {/* <Sidebar isSidebar={isSidebar} /> */}
+    {/* <Topbar setIsSidebar={setIsSidebar}/> */}
     <Box m="1rem">
       {/* HEADER */}
-      <Box display="flex" justifyContent="space-between" alignItems="center"
-      >
+      <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
 
         <Box>
@@ -47,8 +47,6 @@ const Dashboard = () => {
       </Box>
 
       {/* GRID & CHARTS */}
-
-            
       <Box
         display="grid"
         gridTemplateColumns="repeat(12, 1fr)"

@@ -15,7 +15,7 @@ const Navbar = () => {
     // add active class to list 
     const addActive = (e) => {
         let target = e.target.closest('span');
-        let list = document.querySelectorAll('.middle span');
+        let list = document.querySelectorAll('.middel span');
         list.forEach(li => li.classList.remove('active'));
         target.classList.add('active')
     }
@@ -33,7 +33,7 @@ const Navbar = () => {
                     </Box>
                 </Grid>
                 <Grid item sm={4} md={4}>
-                    <Box className="middle" onClick={addActive}>
+                    <Box className="middel" onClick={addActive}>
                         <span className="active"><HomeIcon /></span>
                         <span > <OndemandVideoIcon /></span>
                         <span> <StorefrontIcon/>   </span>

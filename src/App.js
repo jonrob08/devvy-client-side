@@ -38,8 +38,14 @@ function App() {
         <ColorModeContext.Provider value={colorMode}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-
             <div className="app container justify-content-center align-items-center">
+              {/* <main className="login">
+                <Routes>
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/" element={<Main />} />
+                </Routes>
+              </main> */}
+
               <Routes>
                 <Route
                   element={
