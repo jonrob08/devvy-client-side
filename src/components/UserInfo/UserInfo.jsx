@@ -17,10 +17,10 @@ function UserInfo() {
                 <Typography variant="subtitle1">Lives in Chandler, Arizona</Typography>
             </Box>
         </Box>
-        <Button variant='contained' fullWidth>Edit Details</Button>
+        <Button variant='contained' size="medium">Edit Details</Button>
         <Button variant='contained' fullWidth>Add Hobbies</Button>
     </Box>
   )
 }
 
-export default UserInfo
+export default UserInfo;

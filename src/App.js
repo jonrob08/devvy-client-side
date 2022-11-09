@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Outlet } from "react-router-dom";
 import { ColorModeContext, useMode } from "./theme";
 import AppProvider from "./ContextApi/AppContext";
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -39,26 +39,21 @@ function App() {
         <ColorModeContext.Provider value={colorMode}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <div className="app container justify-content-center align-items-center">
+            <div className="app container-fluid justify-content-center align-items-center h-100">
+            <Sidebar />
               <main className="login">
                 <Routes>
                   <Route path="/login" element={<Login />} />
                   <Route path="/" element={<Main />} />
                 </Routes>
+                
               </main>
-              <Sidebar isSidebar={isSidebar} />
 
-              <main className="content container justify-content-center align-items-center">
-              <Topbar setIsSidebar={setIsSidebar} className="Visibility"/>
-                  <Box
-                  sx={{
-                    background: `${colors.primary[700]} !important`,
-                    boxShadow: "0 3px 25px rgb(0, 0, 0, 0.5)",
-                    borderRadius: "20px",
-                    padding: "1.5rem",
-                  }}
-                >
+              
 
+              <main className="content justify-content-center align-items-center">
+              <Topbar />
+              
                   <Routes>
                     {/* <Route element={<ProtectedRoute />} /> */}
                     {/* <ProtectedRoute path="/" element={<Dashboard/>} /> */}
@@ -164,7 +159,7 @@ function App() {
                     } 
                     />
                   </Routes>
-                </Box>
+            
               </main>
             </div>
           </ThemeProvider>
