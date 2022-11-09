@@ -31,9 +31,7 @@ const Team = () => {
                         ? colors.blueAccent[900]
                         : colors.blueAccent[700]
                     }
-                    sx={{ boxShadow: 3 }}
-                    
-                >
+                    sx={{ boxShadow: 3 }} >
                     {access === "admin" && <AdminPanelSettingsOutlinedIcon textShadow="2px 2px #000000;" />}
                     {access === "manager" && <SecurityOutlinedIcon />}
                     {access === "user" && <LockOpenOutlinedIcon />}
@@ -46,13 +44,19 @@ const Team = () => {
     ]
 
     return (
-        <Box>
+        <Box
+        sx={{
+            background: `${colors.primary[700]} !important`,
+            boxShadow: "0 3px 25px rgb(0, 0, 0, 0.5)",
+            borderRadius: "20px",
+            padding: "1.5rem",
+          }}>
             <Header title="TEAM" subtitle="Managing Team Members" />
             <Box
                 m="1rem"
                 pr="1rem"
-                height="70vh"
-                width="100%"
+                height="75vh"
+                width="48vw"
                 sx={{ 
                     "& .MuiDataGrid-root": {
                         marginRight: "1rem",

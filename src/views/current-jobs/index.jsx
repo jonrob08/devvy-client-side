@@ -16,6 +16,8 @@ import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 
 const CurrentJobs = () => {
     // for user info
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
     const { UserGState, dispatchUser } = useContext(AppContext)
     const navigate = useNavigate();
     //logout function
@@ -50,7 +52,14 @@ const CurrentJobs = () => {
         return jobsArr
     }
 
-    return <Box m="20px">
+    return <Box m="20px"
+    sx={{
+        background: `${colors.primary[700]} !important`,
+        boxShadow: "0 3px 25px rgb(0, 0, 0, 0.5)",
+        borderRadius: "20px",
+        padding: "1.5rem",
+  
+      }}>
         <Header title="Current Jobs" subtitle="These are you current open jobs" />
 
         <Accordion defaultExpanded>
@@ -281,7 +290,7 @@ const CurrentJobs = () => {
                 <Job />
             </AccordionDetails>
         </Accordion>
-
+      
     </Box>
 }
 

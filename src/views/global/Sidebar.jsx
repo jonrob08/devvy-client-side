@@ -53,6 +53,8 @@ const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
 
+  const isAuthenticated = localStorage.getItem('AccessToken');
+
   // for user info
   const { UserGState, dispatchUser } = useContext(AppContext)
   const navigate = useNavigate();
@@ -64,13 +66,16 @@ const Sidebar = () => {
   }
 
   return (
+    <>
+    {
+      isAuthenticated &&
     <Box
       sx={{
-        margin: "2em 2rem",
+        margin: "2rem 2rem",
         padding:0,
         textAlign: "center",
         justifyContent: "center",
-
+        verticalAlign: "middle",
 
         "& .pro-sidebar-inner": {
           background: `${colors.primary[800]} !important`,
@@ -120,12 +125,21 @@ const Sidebar = () => {
 
           {/* contains profilepic username and descriptive text */}
           {!isCollapsed && (
-            <Box mb="2rem">  
+
+
+            <Box
+              sx={{
+                margin: "25px",
+                padding: "20px",
+                // backgroundColor: "rgba(0,0,0,.1)",
+                borderRadius: "4px",
+              }}>
+
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt="profile-user"
                   width="100px"
-                  height="100px"
+                  height="95px"
                   src={UserGState.info.profile_pic}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
@@ -137,7 +151,7 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                 Username
+                 {UserGState.info.full_name}
                 </Typography>
                 <Header subtitle="Admin Dashboard" />
               </Box>
@@ -170,7 +184,9 @@ const Sidebar = () => {
               color={colors.grey[300]} 
               sx={{ m: "2rem 0 0 0", fontWeight:"800"}}
             >
-              DATA
+
+              JOBS
+
             </Typography>
 
             <Item
@@ -271,7 +287,7 @@ const Sidebar = () => {
         </Menu>
       </ProSidebar>
     </Box>
-  );
+  }  </>);
 };
 
 export default Sidebar;

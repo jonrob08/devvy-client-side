@@ -23,38 +23,60 @@ const Team = () => {
     ]
 
     return (
-        <Box m="20px">
+        <Box
+        sx={{
+          background: `${colors.primary[700]} !important`,
+          boxShadow: "0 3px 25px rgb(0, 0, 0, 0.5)",
+          borderRadius: "20px",
+          padding: "1.5rem",
+        }}>
             <Header title="Invoices" subtitle="List of Invoice Balances" />
             <Box
-                m="40px 0 0 0"
+                m="1rem"
+                pr="1rem"
                 height="75vh"
+
                 sx={{ 
                     "& .MuiDataGrid-root": {
-                        border: "none"
+                      marginRight: "1rem",
+                      border: "none"
                     },
                     "& .MuiDataGrid-cell": {
                       borderBottom: "none",
                     },
                     "& .name-column--cell": {
-                      color: colors.greenAccent[300],
+                      color: colors.primary[100],
                     },
                     "& .MuiDataGrid-columnHeaders": {
-                      backgroundColor: colors.blueAccent[700],
+                      backgroundColor: colors.grey[800],
                       borderBottom: "none",
+                      borderRadius:"10px 10px 0 0"
                     },
                     "& .MuiDataGrid-virtualScroller": {
-                      backgroundColor: colors.primary[400],
+                      backgroundColor: colors.primary[800],
                     },
                     "& .MuiDataGrid-footerContainer": {
                       borderTop: "none",
-                      backgroundColor: colors.blueAccent[700],
+                      backgroundColor: colors.grey[800],
+                      borderRadius: "0 0 10px 10px",
                     },
+                    "& .MuiTablePagination-selectLabel": {
+                      paddingTop: "1rem",
+                      justifyContent:"center !important",
+                      alignContent: "center !important",
+                  },
+                  "& .MuiTablePagination-displayedRows": {
+                      paddingTop: "1rem",
+                      justifyContent:"center !important",
+                      alignContent: "center !important",
+                  },
                     "& .MuiCheckbox-root": {
-                      color: `${colors.greenAccent[200]} !important`,
+                      color: `${colors.blueAccent[200]} !important`,
+                      paddingTop: "1rem",
+                      justifyContent:"center !important",
+                      alignContent: "center !important",
                     },
-                    "& .MuiCheckbox-root ": {
-                        color: `${colors.greenAccent[200]} !important`
-                    }
+
                  }}
             >
                 <DataGrid 
