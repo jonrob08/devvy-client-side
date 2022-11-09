@@ -1,288 +1,85 @@
-import { useState, useContext, useEffect } from "react";
-import axios from 'axios';
-import { tokens } from "../../theme";
-import { useNavigate } from "react-router-dom";
-import { Box, Typography, useTheme } from "@mui/material";
+import { useEffect, useContext, useState } from "react";
+import {
+  Box,
+  useTheme,
+  Typography,
+  Dialog,
+  DialogTitle,
+  DialogActions,
+  DialogContent,
+  Button,
+} from "@mui/material";
 import Header from "../../components/Header/Header";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { tokens } from "../../theme";
+import { getAllJobs, getOneJob } from "../../API/Job";
 import { AppContext } from "../../ContextApi/AppContext";
-import Job from "../../components/Job";
-
-// MUI Icons
-import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
+import { Handshake } from "@mui/icons-material";
 
 const CurrentJobs = () => {
-    // for user info
-    const { UserGState, dispatchUser } = useContext(AppContext)
-    const navigate = useNavigate();
-    //logout function
-    console.log('USERINFO:', UserGState.info);
-    const Logout = () => {
-        dispatchUser({ type: "LOGOUT" })
-        navigate('/login');
-    }
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const { JobGState, dispatchJob } = useContext(AppContext);
+  const [openDialog, setOpenDialog] = useState(false);
 
-    const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
-    const [job, setJob] = useState([])
-    // const config = {
-    //     headers: {
-    //         Authorization:`Bearer ${localStorage.getItem('AccessToken')}`,
-    //         Accept: 'application/json;charset=UTF-8',
-    //     }
-    // };
-    const [isCollapsed, setIsCollapsed] = useState(false);
-    const [selected, setSelected] = useState("Dashboard");
+  useEffect(() => {
+    (async () => {
+      const result = await getAllJobs();
+      dispatchJob({ type: "GET_ALL_JOBS", payload: result.data.jobs });
+    })();
+  }, []);
 
-    // useEffect(() => {
-    //     axios.get(`${REACT_APP_SERVER_URL}/api/v1/job`, config)
-    //         .then(response => {
-    //             setJob(response.data.jobs)
-    //             console.log("This is an array of jobs>>>>", job)
-    //         })
-    // }, [])
+  const handleJobData = async (jobId) => {
+    const result = await getOneJob(jobId);
+    dispatchJob({ type: "GET_ONE_JOB", payload: result.data });
+    setOpenDialog(true);
+  };
 
-    const renderJobs = () => {
-        let jobsArr = job.map((j, idx) => <p>{j.title}</p>)
-        console.log("JOBS:", jobsArr)
-        return jobsArr
-    }
-
-    return <Box m="20px">
-        <Header title="Current Jobs" subtitle="These are you current open jobs" />
-
-        <Accordion defaultExpanded>
-            <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon />}>
-                <Typography variant='h5'>
-                    Job Title
-                </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-                <Typography variant='h6'>
-                    Description
-                </Typography>
-                <Typography mb="20px">
-                    Description goes here, lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, porro officia, adipisci, laborum incidunt sit quas iure quis ab accusamus quos. Cumque ratione totam ipsum exercitationem excepturi libero iste aliquam.
-                </Typography>
-                <Typography variant='h6' mb="10px">
-                    Tasks
-                </Typography>
-                <Job />
-            </AccordionDetails>
-        </Accordion>
-        <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon />}>
-                <Typography variant='h5'>
-                    Job Title
-                </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-                <Typography variant='h6'>
-                    Description
-                </Typography>
-                <Typography mb="20px">
-                    Description goes here, lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, porro officia, adipisci, laborum incidunt sit quas iure quis ab accusamus quos. Cumque ratione totam ipsum exercitationem excepturi libero iste aliquam.
-                </Typography>
-                <Typography variant='h6' mb="10px">
-                    Tasks
-                </Typography>
-                <Job />
-            </AccordionDetails>
-        </Accordion>
-        <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon />}>
-                <Typography variant='h5'>
-                    Job Title
-                </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-                <Typography variant='h6'>
-                    Description
-                </Typography>
-                <Typography mb="20px">
-                    Description goes here, lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, porro officia, adipisci, laborum incidunt sit quas iure quis ab accusamus quos. Cumque ratione totam ipsum exercitationem excepturi libero iste aliquam.
-                </Typography>
-                <Typography variant='h6' mb="10px">
-                    Tasks
-                </Typography>
-                <Job />
-            </AccordionDetails>
-        </Accordion>
-        <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon />}>
-                <Typography variant='h5'>
-                    Job Title
-                </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-                <Typography variant='h6'>
-                    Description
-                </Typography>
-                <Typography mb="20px">
-                    Description goes here, lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, porro officia, adipisci, laborum incidunt sit quas iure quis ab accusamus quos. Cumque ratione totam ipsum exercitationem excepturi libero iste aliquam.
-                </Typography>
-                <Typography variant='h6' mb="10px">
-                    Tasks
-                </Typography>
-                <Job />
-            </AccordionDetails>
-        </Accordion>
-        <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon />}>
-                <Typography variant='h5'>
-                    Job Title
-                </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-                <Typography variant='h6'>
-                    Description
-                </Typography>
-                <Typography mb="20px">
-                    Description goes here, lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, porro officia, adipisci, laborum incidunt sit quas iure quis ab accusamus quos. Cumque ratione totam ipsum exercitationem excepturi libero iste aliquam.
-                </Typography>
-                <Typography variant='h6' mb="10px">
-                    Tasks
-                </Typography>
-                <Job />
-            </AccordionDetails>
-        </Accordion>
-        <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon />}>
-                <Typography variant='h5'>
-                    Job Title
-                </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-                <Typography variant='h6'>
-                    Description
-                </Typography>
-                <Typography mb="20px">
-                    Description goes here, lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, porro officia, adipisci, laborum incidunt sit quas iure quis ab accusamus quos. Cumque ratione totam ipsum exercitationem excepturi libero iste aliquam.
-                </Typography>
-                <Typography variant='h6' mb="10px">
-                    Tasks
-                </Typography>
-                <Job />
-            </AccordionDetails>
-        </Accordion>
-        <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon />}>
-                <Typography variant='h5'>
-                    Job Title
-                </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-                <Typography variant='h6'>
-                    Description
-                </Typography>
-                <Typography mb="20px">
-                    Description goes here, lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, porro officia, adipisci, laborum incidunt sit quas iure quis ab accusamus quos. Cumque ratione totam ipsum exercitationem excepturi libero iste aliquam.
-                </Typography>
-                <Typography variant='h6' mb="10px">
-                    Tasks
-                </Typography>
-                <Job />
-            </AccordionDetails>
-        </Accordion>
-        <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon />}>
-                <Typography variant='h5'>
-                    Job Title
-                </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-                <Typography variant='h6'>
-                    Description
-                </Typography>
-                <Typography mb="20px">
-                    Description goes here, lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, porro officia, adipisci, laborum incidunt sit quas iure quis ab accusamus quos. Cumque ratione totam ipsum exercitationem excepturi libero iste aliquam.
-                </Typography>
-                <Typography variant='h6' mb="10px">
-                    Tasks
-                </Typography>
-                <Job />
-            </AccordionDetails>
-        </Accordion>
-        <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon />}>
-                <Typography variant='h5'>
-                    Job Title
-                </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-                <Typography variant='h6'>
-                    Description
-                </Typography>
-                <Typography mb="20px">
-                    Description goes here, lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, porro officia, adipisci, laborum incidunt sit quas iure quis ab accusamus quos. Cumque ratione totam ipsum exercitationem excepturi libero iste aliquam.
-                </Typography>
-                <Typography variant='h6' mb="10px">
-                    Tasks
-                </Typography>
-                <Job />
-            </AccordionDetails>
-        </Accordion>
-        <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon />}>
-                <Typography variant='h5'>
-                    Job Title
-                </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-                <Typography variant='h6'>
-                    Description
-                </Typography>
-                <Typography mb="20px">
-                    Description goes here, lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, porro officia, adipisci, laborum incidunt sit quas iure quis ab accusamus quos. Cumque ratione totam ipsum exercitationem excepturi libero iste aliquam.
-                </Typography>
-                <Typography variant='h6' mb="10px">
-                    Tasks
-                </Typography>
-                <Job />
-            </AccordionDetails>
-        </Accordion>
-        <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon />}>
-                <Typography variant='h5'>
-                    Job Title
-                </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-                <Typography variant='h6'>
-                    Description
-                </Typography>
-                <Typography mb="20px">
-                    Description goes here, lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, porro officia, adipisci, laborum incidunt sit quas iure quis ab accusamus quos. Cumque ratione totam ipsum exercitationem excepturi libero iste aliquam.
-                </Typography>
-                <Typography variant='h6' mb="10px">
-                    Tasks
-                </Typography>
-                <Job />
-            </AccordionDetails>
-        </Accordion>
-        <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon />}>
-                <Typography variant='h5'>
-                    Job Title
-                </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-                <Typography variant='h6'>
-                    Description
-                </Typography>
-                <Typography mb="20px">
-                    Description goes here, lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, porro officia, adipisci, laborum incidunt sit quas iure quis ab accusamus quos. Cumque ratione totam ipsum exercitationem excepturi libero iste aliquam.
-                </Typography>
-                <Typography variant='h6' mb="10px">
-                    Tasks
-                </Typography>
-                <Job />
-            </AccordionDetails>
-        </Accordion>
-
+  return (
+    <Box m="20px">
+      <Header title="Current Jobs" subtitle="List of Active Jobs" />
+      {!!JobGState.jobs?.length &&
+        JobGState.jobs.map((job) => {
+          return (
+            <>
+              <Accordion defaultExpanded onClick={() => handleJobData(job._id)}>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <Typography color={colors.greenAccent[500]} variant="h5">
+                    {job.title}
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography>{job.description}</Typography>
+                </AccordionDetails>
+              </Accordion>
+              <Dialog
+                sx={{ "& .MuiDialog-paper": { width: "80%", maxHeight: 435 } }}
+                maxWidth="xs"
+                open={openDialog}
+              >
+                <DialogTitle>{job.title}</DialogTitle>
+                <DialogContent dividers>
+                  {JobGState.jobDetail?.tasks.map((task) => (
+                    <>
+                      <Typography>{task.title}</Typography>
+                      {task.items.map((task) => (
+                        <Typography>{task.title}</Typography>
+                      ))}
+                    </>
+                  ))}
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={() => setOpenDialog(false)}>Ok</Button>
+                </DialogActions>
+              </Dialog>
+            </>
+          );
+        })}
     </Box>
-}
+  );
+};
 
 export default CurrentJobs;

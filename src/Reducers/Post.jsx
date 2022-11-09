@@ -1,4 +1,4 @@
-const PostReducer = (state , action ) => {
+const PostReducer = (state, action) => {
     switch (action.type) {
         case "USER_POSTS":
             return{
