@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import { mockTransactions } from "../../data/mockData";
@@ -12,12 +13,18 @@ import GeographyChart from "../../components/GeographyChart/GeographyChart";
 import BarChart from "../../components/BarChart/BarChart";
 import StatBox from "../../components/StatBox/StatBox";
 import ProgressCircle from "../../components/ProgressCircle/ProgressCircle";
+import Sidebar from "../global/Sidebar";
+import Topbar from "../global/Topbar";
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [isSidebar, setIsSidebar] = useState(true);
 
   return (
+    <>
+    {/* <Sidebar isSidebar={isSidebar} /> */}
+    {/* <Topbar setIsSidebar={setIsSidebar}/> */}
     <Box m="1rem">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -288,6 +295,7 @@ const Dashboard = () => {
         </Box>
       </Box>
     </Box>
+    </>
   );
 };
 

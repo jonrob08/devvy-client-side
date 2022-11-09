@@ -36,8 +36,8 @@ const Post = ({data , OpenCreatePost , setPostData}) => {
     }
     // like post 
     const likePost = async() => {
-        await Like(data._id).then(Res => {
-            dispatchPost({type:"LIKE_POST" , payload:Res.data});
+        await Like(data._id).then(res => {
+            dispatchPost({type:"LIKE_POST" , payload:res.data});
         }).catch(err =>{
             HandleErr(err);
         });

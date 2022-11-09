@@ -1,7 +1,7 @@
-import axios from "axios";
+import { instance } from "./DefaultAxios";
 
 //login 
-export const SignIn = (data) => axios.post('auth/login' , data );
+export const SignIn = (data) => instance.post('auth/login' , data );
 
 //signup 
-export const createAccount = (data) => axios.post('auth/signup' , data);
+export const createAccount = (data) => instance.post('auth/signup' , data);
