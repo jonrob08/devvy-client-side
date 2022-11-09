@@ -191,7 +191,7 @@ const Sidebar = () => {
               sx={{ m: "2rem 0 0 0", fontWeight:"800"}}
             >
 
-              Jobs
+              Jobs!
 
             </Typography>
 
