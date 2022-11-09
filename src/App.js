@@ -12,7 +12,7 @@ import Team from "./views/team";
 import CurrentJobs from "./views/current-jobs";
 import Contacts from "./views/contacts";
 import Invoices from "./views/invoices";
-import Form from "./views/form";
+import CreateJob from "./views/create-job";
 import Calendar from "./views/calendar";
 import FAQ from "./views/faq";
 import Bar from "./views/bar";
@@ -111,10 +111,10 @@ function App() {
                     }
                   />
                   <Route
-                    path="/form"
+                    path="/create-job"
                     element={
                       <ProtectedRoute>
-                        <Form />
+                        <CreateJob />
                       </ProtectedRoute>
                     }
                   />

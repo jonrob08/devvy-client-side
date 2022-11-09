@@ -10,6 +10,11 @@ const JobReducer = (state, action) => {
         ...state,
         jobDetail: action.payload,
       };
+    case "CREATE_JOB":
+      return {
+        ...state,
+        jobs: [...state.jobs, action.payload],
+      }
     default:
       return state;
   }
