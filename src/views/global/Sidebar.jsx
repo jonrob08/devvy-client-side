@@ -53,8 +53,6 @@ const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
 
-  const isAuthenticated = localStorage.getItem('AccessToken');
-
   // for user info
   const { UserGState, dispatchUser } = useContext(AppContext)
   const navigate = useNavigate();
@@ -66,16 +64,13 @@ const Sidebar = () => {
   }
 
   return (
-    <>
-    {
-      isAuthenticated &&
     <Box
       sx={{
-        margin: "2rem 2rem",
+        margin: "2em 2rem",
         padding:0,
         textAlign: "center",
         justifyContent: "center",
-        verticalAlign: "middle",
+
 
         "& .pro-sidebar-inner": {
           background: `${colors.primary[800]} !important`,
@@ -136,7 +131,7 @@ const Sidebar = () => {
               sx={{
                 margin: "25px",
                 padding: "20px",
-                // backgroundColor: "rgba(0,0,0,.1)",
+                backgroundColor: "rgba(0,0,0,.1)",
                 borderRadius: "4px",
               }}>
 
@@ -144,7 +139,7 @@ const Sidebar = () => {
                 <img
                   alt="profile-user"
                   width="100px"
-                  height="95px"
+                  height="100px"
                   src={UserGState.info.profile_pic}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
@@ -157,9 +152,14 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                 {UserGState.info.full_name}
+                 Username
                 </Typography>
                 <Header subtitle="Admin Dashboard" />
+
+                <Link to='/profile'>
+                  <Typography variant="h4">{UserGState.info.full_name}</Typography>
+                </Link>
+
               </Box>
             </Box>
           )}
@@ -191,7 +191,7 @@ const Sidebar = () => {
               sx={{ m: "2rem 0 0 0", fontWeight:"800"}}
             >
 
-              JOBS
+              Jobs
 
             </Typography>
 
@@ -293,7 +293,7 @@ const Sidebar = () => {
         </Menu>
       </ProSidebar>
     </Box>
-  }  </>);
+  );
 };
 
 export default Sidebar;

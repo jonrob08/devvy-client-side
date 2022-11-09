@@ -13,7 +13,7 @@ const Login = () => {
     const [user , setUser] = useState({});
     const [signupModal , setSignupModal] = useState(false);
     const [Err , setErr] = useState('');
-    const [waiting , setWaiting] = useState(false);
+    const [waiting , setWaiting] = useState(false)
     const Navigate = useNavigate()
     //get data from inputs 
     const userForm = (e , field) => {
