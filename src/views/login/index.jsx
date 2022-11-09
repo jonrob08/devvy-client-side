@@ -5,6 +5,8 @@ import { SignIn } from '../../API/Auth';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {useNavigate} from 'react-router-dom'
 import { AppContext } from '../../ContextApi/AppContext';
+import bgImg from "../../Assets/images/pexels-cottonbro-studio-9655624.jpg";
+import Topnav from '../../components/Navbar/Topnav';
 import { HandleErr } from '../../Utils/Utils';
 import './login.scss'
 
@@ -41,14 +43,19 @@ const Login = () => {
     //     setSignupModal(false);
     // }
     return(
+        <div style={{
+            backgroundImage: `url(${bgImg})`,
+            backgroundColor: "white",
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            width: '100vw',
+            height: '100vh'}}>
+                <Topnav />
         <Box className='Login'>
             {signupModal&&<Signup open={setSignupModal} />}
             <Container>
                 <Grid container spacing={10}>
-                    <Grid item xs={12} md={6}>
-                        <img className='logo' src="https://via.placeholder.com/150" alt="logo" width="300px" />
-                        <Typography variant='h4'>Devvy helps you connect with teams and get jobs done quick!</Typography>
-                    </Grid>
+                    
                     <Grid item xs={12} md={6}>
                         <Box className='form' display='flex' justifyContent='center' alignItems='center' flexDirection='column'>
                             <FormControl fullWidth className='MuiForm'>
@@ -64,6 +71,7 @@ const Login = () => {
                 </Grid>
             </Container>
         </Box>
+    </div>
     )
 }
 export default Login;
