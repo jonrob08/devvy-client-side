@@ -35,137 +35,139 @@ function App() {
   return (
     <AppProvider>
       <BrowserRouter>
-
         <ColorModeContext.Provider value={colorMode}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <div className="app container-fluid justify-content-center align-items-center h-100">
-            <Sidebar />
-              <main className="login">
-                <Routes>
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/" element={<Main />} />
-                </Routes>
-                
-              </main>
 
-              
-
-              <main className="content justify-content-center align-items-center">
-              <Topbar />
-              
-                  <Routes>
-                    {/* <Route element={<ProtectedRoute />} /> */}
-                    {/* <ProtectedRoute path="/" element={<Dashboard/>} /> */}
-                    <Route path="/dashboard" element={
+            <div className="app container justify-content-center align-items-center">
+              <Routes>
+                <Route
+                  element={
                     <ProtectedRoute>
-                      <Dashboard />
-                    </ProtectedRoute>} />
-                    <Route
-                      path="/social-home"
-                      element={
-                        <ProtectedRoute>
-                          <Social />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/profile/:id" element={<Profile />} />
-                    <Route path="/friends" element={<FindFriends />} />
-                    <Route
-                      path="/groups"
-                      element={
-                        <ProtectedRoute>
-                          <Groups />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/team"
-                      element={
-                        <ProtectedRoute>
-                          <Team />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/contacts"
-                      element={
-                        <ProtectedRoute>
-                          <Contacts />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/invoices"
-                      element={
-                        <ProtectedRoute>
-                          <Invoices />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/form"
-                      element={
-                        <ProtectedRoute>
-                          <Form />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/calendar"
-                      element={
-                        <ProtectedRoute>
-                          <Calendar />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/faq"
-                      element={
-                        <ProtectedRoute>
-                          <FAQ />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/bar"
-                      element={
-                        <ProtectedRoute>
-                          <Bar />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/pie"
-                      element={
-                        <ProtectedRoute>
-                          <Pie />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/line"
-                      element={
-                        <ProtectedRoute>
-                          <Line />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route path="/geography" element={
-                    <ProtectedRoute>
-                      <Geography />
+                      <Sidebar isSidebar={isSidebar} />
+                      <main className="content container justify-content-center align-items-center">
+                        <Topbar setIsSidebar={setIsSidebar} />
+                        <Box
+                          sx={{
+                            background: `${colors.primary[700]} !important`,
+                            boxShadow: "0 3px 25px rgb(0, 0, 0, 0.5)",
+                            borderRadius: "20px",
+                            padding: "1.5rem",
+                          }}
+                        >
+                          <Outlet />
+                        </Box>
+                      </main>
                     </ProtectedRoute>
-                    } 
-                    />
-                  </Routes>
-            
-              </main>
+                  }
+                >
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/current-jobs" element={<CurrentJobs/>} />
+                  <Route
+                    path="/social-home"
+                    element={
+                      <ProtectedRoute>
+                        <Social />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/profile/:id" element={<Profile />} />
+                  <Route path="/friends" element={<FindFriends />} />
+                  <Route
+                    path="/groups"
+                    element={
+                      <ProtectedRoute>
+                        <Groups />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/team"
+                    element={
+                        <Team />
+                    }
+                  />
+                  <Route
+                    path="/contacts"
+                    element={
+                      <ProtectedRoute>
+                        <Contacts />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/invoices"
+                    element={
+                      <ProtectedRoute>
+                        <Invoices />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/form"
+                    element={
+                      <ProtectedRoute>
+                        <Form />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/calendar"
+                    element={
+                      <ProtectedRoute>
+                        <Calendar />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/faq"
+                    element={
+                      <ProtectedRoute>
+                        <FAQ />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/bar"
+                    element={
+                      <ProtectedRoute>
+                        <Bar />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/pie"
+                    element={
+                      <ProtectedRoute>
+                        <Pie />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/line"
+                    element={
+                      <ProtectedRoute>
+                        <Line />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/geography"
+                    element={
+                      <ProtectedRoute>
+                        <Geography />
+                      </ProtectedRoute>
+                    }
+                  />
+                </Route>
+                <Route path="/login" element={<Login />} />
+                  <Route path="/" element={<Main />} />
+              </Routes>
             </div>
           </ThemeProvider>
         </ColorModeContext.Provider>
       </BrowserRouter>
-
     </AppProvider>
   );
 }
