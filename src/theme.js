@@ -113,6 +113,17 @@ export const tokens = (mode) => ({
             800: "#0F172A",
             900: "#0C1422",
         },
+        yellowAccent: {
+            100: "#FFFFEE",
+            200: "#F2ECD5",
+            300: "#E5D9BC",
+            400: "#D8C6A3",
+            500: "#CBB38A",
+            600: "#BEA071",
+            700: "#B18D58",
+            800: "#A47A3F",
+            900: "#99681F",
+        },
         greenAccent: {
             100: "#dbf5ee",
             200: "#C0C6C5",
@@ -181,7 +192,17 @@ export const tokens = (mode) => ({
         //     800: "#c0c4cc",
         //     900: "#DBDDE1",
         // },
-
+        yellowAccent: {
+            100: "#99681F",
+            200: "#A47A3F",
+            300: "#B18D58",
+            400: "#BEA071",
+            500: "#CBB38A",
+            600: "#D8C6A3",
+            700: "#E5D9BC",
+            800: "#F2ECD5",
+            900: "#FFFFEE",
+        },
         greenAccent: {
             100: "#002802",
             200: "#1E3C1D",
@@ -285,8 +306,8 @@ export const themeSettings = (mode) => {
                 fontWeight: 700,
             },
             h5: {
-                fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-                fontSize: 16,
+                fontFamily: ["Helvetica Neue", "sans-serif"].join(","),
+                fontSize: 25,
                 fontWeight: 700,
             },
             h6: {
