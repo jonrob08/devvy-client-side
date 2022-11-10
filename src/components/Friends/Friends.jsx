@@ -6,7 +6,7 @@ const Friends = () => {
             <Box className="title" display='flex' justifyContent='space-between' alignItems='flex-start' paddingY='10px'>
                 <Box>
                     <Typography variant='h6'>Friends</Typography>
-                    <Typography variant="subtitle">5 friends</Typography>
+                    <Typography variant="subtitle1">5 friends</Typography>
                 </Box>
                 <Typography variant='subtitle2' color='primary'>See All Friends</Typography>
             </Box>

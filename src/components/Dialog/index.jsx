@@ -11,7 +11,7 @@ const Dialog = (props) => {
   return (
     <MuiDialog
       sx={{ "& .MuiDialog-paper": { width: "80%", maxHeight: 435 } }}
-      maxWidth="xs"
+      
       open={open}
     >
       <DialogTitle>{title}</DialogTitle>

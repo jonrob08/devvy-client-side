@@ -115,7 +115,7 @@ const Post = ({data , OpenCreatePost , setPostData}) => {
             </Box>
             <Box className='Actions'>
                 <List disablePadding> 
-                    <ListItem button onClick={likePost} className={data.like.includes(UserGState.info._id) && "activeLike"}> {data.like.includes(UserGState.info._id) ? <ThumbUpAltIcon/> : <ThumbUpAltOutlinedIcon />}  Like</ListItem>
+                    <ListItem button onClick={likePost} className={data.like.includes(UserGState.info._id) ? "activeLike" : ""}> {data.like.includes(UserGState.info._id) ? <ThumbUpAltIcon/> : <ThumbUpAltOutlinedIcon />}  Like</ListItem>
                     <ListItem button> <label htmlFor='comment'><ChatBubbleOutlineOutlinedIcon/>  Comment</label></ListItem>
                 </List>
             </Box>
@@ -139,7 +139,7 @@ const Post = ({data , OpenCreatePost , setPostData}) => {
             </Box>
             <form className='addComment' onSubmit={submitComment} >
                 <img src={UserGState.info.profile_pic} alt='profile' width="50px" height='32px' />
-                <input placeholder='Write a comment' id='comment' className={lang === 'AR'&&"ArContent"} value={comment.comment} onChange={(e) => addContent(e.target.value)}  />
+                <input placeholder='Write a comment' id='comment' className={lang === 'AR' ? "ArContent" : ""} value={comment.comment} onChange={(e) => addContent(e.target.value)}  />
                 <Box display='flex' className='icons'>
                     <InsertEmoticonIcon />
                     <CameraAltOutlinedIcon />

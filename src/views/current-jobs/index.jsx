@@ -134,7 +134,7 @@ const CurrentJobs = () => {
       {!!JobGState.jobs?.length &&
         JobGState.jobs.map((job) => {
           return (
-            <>
+            <div key={`jobid-${job._id}`}>
               <Accordion defaultExpanded key={job._id}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography color={colors.greenAccent[500]} variant="h5">
@@ -169,7 +169,7 @@ const CurrentJobs = () => {
                 taskId={selectedTaskId}
                 onClose={() => handleItemModel(false, null, null)}
               />
-            </>
+            </div>
           );
         })}
     </Box>

@@ -81,8 +81,8 @@ const Profile = () => {
         <Box className='Profile'>
             {createPost&& <CreatePost Open = {setCreatePost} Data={postData} />}
             {/* cover section */}
-            <Box className={`TopPart ${!UserGState.info.cover_pic &&"bg-green"}`} display='flex' alignItems='center' flexDirection='column'>
-                <Box className={`CoverImage ${!UserGState.info.cover_pic &&"emptyImg"}`}>
+            <Box className={`TopPart ${!UserGState.info.cover_pic ? "bg-green" : ""}`} display='flex' alignItems='center' flexDirection='column'>
+                <Box className={`CoverImage ${!UserGState.info.cover_pic ? "emptyImg" : ""}`}>
                     {UserGState.info.cover_pic&&
                         <img src={UserGState.info.cover_pic} width='100%' height='350px' />
                     }
@@ -95,7 +95,7 @@ const Profile = () => {
             {/* Profile header section */}
             <Box className='ProfileTitle'>
                 <Grid container>
-                    <Grid xs={12} md={6}>
+                    <Grid item xs={12} md={6}>
                         <Box className='leftSide' display='flex' alignItems='end'>
                             <Box className='profilePic'>
                                 <img src={UserGState.info.profile_pic} alt="profilepic" width='168px' height='168px' />
@@ -113,7 +113,7 @@ const Profile = () => {
                             </Box>
                         </Box>
                     </Grid>
-                    <Grid xs={12} md={6}>
+                    <Grid item xs={12} md={6}>
                         <Box display='flex' className='BTNs' justifyContent='end'>
                             <Button variant='contained'> <EditIcon /> Edit profile</Button>
                         </Box>
@@ -124,16 +124,16 @@ const Profile = () => {
             
             {/* Post section  */}
             <Box className='PostsSection'>
-                <Container maxWidth='md'>
+                <Container>
                     <Grid container >
-                        <Grid xs={12} md={5}>
+                        <Grid item xs={12} md={5}>
                             <Box className='LeftSide'>
                                 <UserInfo />
                                 
                                 <Friends />
                             </Box>
                         </Grid>
-                        <Grid xs={12} md={7}>
+                        <Grid item xs={12} md={7}>
                             <AddPost OpenCreatePost = {setCreatePost} />
                             {PostGState.userPosts.map(post  => (
                                 <Post key={post._id} data={post} OpenCreatePost = {setCreatePost} setPostData={setPostData} />

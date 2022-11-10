@@ -233,7 +233,7 @@ export default function Signup({ open }) {
           <Button
             type="submit"
             disabled={waiting}
-            className={`signBTN ${waiting && "DisabledBTN"}`}
+            className={`signBTN ${waiting ? "DisabledBTN" : ""}`}
             variant="contained"
             fullWidth
             onClick={HandleSubmit}

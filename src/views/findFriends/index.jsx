@@ -41,7 +41,9 @@ const  FindFriends = () => {
                                 <img src={user.profile_pic} width='209px' height="209px" alt='friend name' />
                                 <Box className='info'>
                                     <Typography variant="body2">{user.username}</Typography>
-                                    <Button fullWidth variant='contained' color='primary' className={UserGState.info.following&&UserGState.info.following.includes(user._id)&&"unfollow"} onClick={() => AddFriend(user._id)}>
+                                    <Button fullWidth variant='contained' color='primary' className={UserGState.info.following&&
+                                        UserGState.info.following.includes(user._id) ?
+                                        "unfollow" : ""} onClick={() => AddFriend(user._id)}>
                                         {UserGState.info.following&&UserGState.info.following&&UserGState.info.following.includes(user._id) ? "UnFriend" : "+Add Friend"}
                                     </Button>
                                 </Box>

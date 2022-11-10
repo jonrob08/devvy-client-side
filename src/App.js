@@ -25,7 +25,6 @@ import Social from "./views/social-home";
 import Login from "./views/login";
 import Profile from "./views/profile";
 import Groups from "./components/Groups/Groups";
-import Main from "./views/main";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -168,7 +167,6 @@ function App() {
                   />
                 </Route>
                 <Route path="/login" element={<Login />} />
-                  <Route path="/" element={<Main />} />
               </Routes>
             </div>
           </ThemeProvider>

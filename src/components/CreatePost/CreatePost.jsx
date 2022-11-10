@@ -78,7 +78,7 @@ const CreatePost = ({Open , Data}) => {
                         </Box>
                     </Box>
                 </Box>
-                <textarea className={lang === 'AR'&&"ArContent"} rows={6}  defaultValue={Data&&Data.content} placeholder="what's on your mind?" cols="66"  onChange={(e) => addContent(e.target.value)} />
+                <textarea className={lang === 'AR' ? "ArContent" : ""} rows={6}  defaultValue={Data&&Data.content} placeholder="what's on your mind?" cols="66"  onChange={(e) => addContent(e.target.value)} />
                 {!PostData.images.length ? 
                 <Box className="emoji" display='flex' justifyContent='space-between' alignItems="center" >
                     <img src="https://www.facebook.com/images/composer/SATP_Aa_square-2x.png" width="40px" height="40px" alt="" />
