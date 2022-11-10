@@ -26,6 +26,8 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import { AppContext } from "../../ContextApi/AppContext";
 import { CenterFocusStrong } from "@material-ui/icons";
 import { fontWeight } from "@mui/system";
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import Diversity2OutlinedIcon from '@mui/icons-material/Diversity2Outlined';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -152,13 +154,9 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                 Username
+                 {UserGState.info.username}
                 </Typography>
                 <Header subtitle="Admin Dashboard" />
-
-                <Link to='/profile'>
-                  <Typography variant="h4">{UserGState.info.full_name}</Typography>
-                </Link>
 
               </Box>
             </Box>
@@ -185,13 +183,21 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
 
+            <Item
+              title="User Profile"
+              to="/profile"
+              icon={<AccountCircleOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
             <Typography
               variant="h6"
               color={colors.grey[300]} 
               sx={{ m: "2rem 0 0 0", fontWeight:"800"}}
             >
 
-              Jobs!
+              Jobs
 
             </Typography>
 
@@ -203,23 +209,9 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Team"
-              to="/team"
-              icon={<DownloadDoneIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
               title="Completed Jobs"
               to="/contacts"
               icon={<ContactsOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Pending Jobs"
-              to="/invoices"
-              icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -229,7 +221,7 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "2rem 0 0 0" }}
             >
-              PAGES
+              Social
             </Typography>
             <Item
               title="Create Job"
@@ -246,12 +238,19 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="FAQ Page"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            title="Find Devs"
+            to="/friends"
+            icon={<HelpOutlineOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="Social Feed"
+            to="/social-home"
+            icon={<Diversity2OutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
 
             <Typography
               variant="h6"
@@ -259,7 +258,7 @@ const Sidebar = () => {
               // sx={{ m: "15px 0 5px 20px" }}
               sx={{ m: "2rem 0 0 0" }}
             >
-              CHARTS
+              CHARTS (WIP)
             </Typography>
             <Item
               title="Bar Chart"

@@ -1,5 +1,4 @@
 import { Box , Grid  } from "@material-ui/core"
-import Logo from '../../Assets/images/logo.png'
 import { Link } from "react-router-dom";
 //icons
 import SearchIcon from '@material-ui/icons/Search';
@@ -24,7 +23,6 @@ const Navbar = () => {
             <Grid container>
                 <Grid item xs={6} sm={4} md={4}>
                     <Box className="left" display="flex" alignItems={"center"} >
-                        <Link to='/'><img src={Logo} alt="facebook" width="40px" /></Link>
                         <Box className="search" marginLeft="10px" alignItems="center" display="flex">
                             <SearchIcon />
                             <input type="text" placeholder="Search Facebook" />

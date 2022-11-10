@@ -1,11 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
-import {Box, Button, Grid, Typography, useTheme, ListItem, List, Container, Link} from '@mui/material';
+import {Box, Button, Grid, Typography, useTheme, ListItem, List, Container, Link, IconButton} from '@mui/material';
 import { useParams } from 'react-router-dom';
 // import some icons from material ui
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import ProfilePic from '../../Assets/images/profile.jpeg'
 import AddIcon from '@material-ui/icons/Add';   
 import EditIcon from '@material-ui/icons/Edit';
+
 // import some components 
 import Navbar from '../../components/Navbar/Navbar';
 import AddPost from '../../components/AddPost/AddPost'
@@ -114,22 +115,13 @@ const Profile = () => {
                     </Grid>
                     <Grid xs={12} md={6}>
                         <Box display='flex' className='BTNs' justifyContent='end'>
-                            <Button variant='contained'> <AddIcon /> Add Story</Button>
                             <Button variant='contained'> <EditIcon /> Edit profile</Button>
                         </Box>
                     </Grid>
                 </Grid>
             </Box>
             {/* Navigation section  */}
-            <Box className='Navigation'>
-                <List>
-                    <Link to='/social-home' text-decoration='none'>
-                    <ListItem className='post-link' button>Posts</ListItem>
-                    </Link>
-                    <ListItem button>About</ListItem>
-                    <ListItem button>Find a Dev </ListItem>
-                </List>
-            </Box>
+            
             {/* Post section  */}
             <Box className='PostsSection'>
                 <Container maxWidth='md'>
@@ -137,7 +129,7 @@ const Profile = () => {
                         <Grid xs={12} md={5}>
                             <Box className='LeftSide'>
                                 <UserInfo />
-                                <Photos />
+                                
                                 <Friends />
                             </Box>
                         </Grid>

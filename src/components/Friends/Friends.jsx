@@ -13,19 +13,19 @@ const Friends = () => {
             <Box className="Content" display='flex' flexWrap='wrap'>
                 <Box display='flex' flexDirection="column">
                     <img src="https://cdn.pixabay.com/photo/2018/11/22/08/05/thor-3831290__340.png" width='100px' height='100px' alt="friendName" />
-                    <Typography variant="caption">Chandrakant</Typography>
+                    <Typography variant="caption">Barry</Typography>
                 </Box>
                 <Box display='flex' flexDirection="column">
                     <img src="https://cdn.pixabay.com/photo/2022/03/16/06/18/bird-7071662__340.jpg" width='100px' height='100px' alt="friendName" />
-                    <Typography variant="caption">Reshma</Typography>
+                    <Typography variant="caption">Latifah</Typography>
                 </Box>
                 <Box display='flex' flexDirection="column">
                     <img src="https://cdn.pixabay.com/photo/2016/05/17/22/16/baby-1399332__340.jpg" width='100px' height='100px' alt="friendName" />
-                    <Typography variant="caption">Anand</Typography>
+                    <Typography variant="caption">Jamie</Typography>
                 </Box>
                 <Box display='flex' flexDirection="column">
                     <img src="https://images.news18.com/ibnlive/uploads/2022/01/army-day-16421788574x3.jpg" width='100px' height='100px' alt="friendName" />
-                    <Typography variant="caption">Rajiv</Typography>
+                    <Typography variant="caption">Willy</Typography>
                 </Box>
             </Box>
         </Box>
